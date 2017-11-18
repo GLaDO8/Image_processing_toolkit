@@ -1,3 +1,5 @@
+//By Aayush Grover
+
 #include "Color.h"
 #include <iostream>
 #include <fstream>

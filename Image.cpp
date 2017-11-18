@@ -1,3 +1,5 @@
+//By Aayush Grover
+
 #include "Image.h"
 #include <bits/stdc++.h>
 #include <fstream>

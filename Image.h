@@ -1,3 +1,5 @@
+//By Aayush Grover
+
 #ifndef Image_H_
 #define Image_H_
 

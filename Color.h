@@ -1,3 +1,5 @@
+//By Aayush Grover
+
 #ifndef Color_H_
 #define Color_H_
 
