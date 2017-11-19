@@ -1,60 +1,38 @@
-//By Aayush Grover
-
 #include "Color.h"
-#include <iostream>
-#include <fstream>
-
-using namespace std;
-
-Color::Color() {}
-Color::Color(int a, int b1, int c): r(a), g(b1), b(c) {}
-Color::~Color() {}
-Color::Color(const Color& c): r(c.r), b(c.b), g(c.g) {}
-
-int Color::getr(){return r;}
-int Color::getg(){return g;}
-int Color::getb(){return b;}
-
-Color& Color::scalar_product(float x)
-{
-	Color& res = *(new Color());
-	res.r = x*(r);
-	res.g = x*(g);
-	res.b = x*(b);
-	if(res.r > 255) res.r-=255;
-	if(res.g > 255) res.g-=255;
-	if(res.b > 255) res.b-=255;
-	return res;
+//default constructor and deconstructor
+Color::Color(){}
+Color::~Color(){}
+//parameterised constructor
+Color::Color(float r, float g, float b){
+    red = r;
+    green  = g;
+    blue = b;
 }
-
-Color& Color::operator+(Color const& c) 
-{
-	Color* t = new Color();
-	Color& res = *t;
-	res.r=r+c.r;
-	res.g=g+c.g;
-	res.b=b+c.b; 
-	return res;
+//copy constructor
+Color::Color(const Color &colo){
+    red = colo.red;
+    green  = colo.green;
+    blue = colo.blue;
 }
-
-Color const& Color::operator=(Color const& c)
-{
-	r=c.r; g=c.g; b=c.b;
+//getter functions for r,g,b values.
+float Color::getr(){
+    return red;
 }
-
-bool Color::operator==(const Color& c) const
-{
-	return (r==c.r && g==c.g && b==c.b);
+float Color::getg(){
+    return green;
 }
-
-ostream& operator<<(ostream& os, Color& c)
-{	
-	os<<c.r<<" "<<c.g<<" "<<c.b<<" ";
-	return os;
+float Color::getb(){
+    return blue;
 }
-
-istream& operator>>(istream& is, Color& c)
-{
-	is>>c.r>>c.g>>c.b;
-	return is;
+ostream& operator << (ostream& out, Color c){
+    if(c.getr()==0 && c.getg()==0 && c.getb()==0){
+        out<< "+ ";
+    }
+    else if(c.getr()==1 && c.getg()==1 && c.getb()==1){
+        out<< "o ";
+    }
+    else{
+        out<< "* ";
+    }
+    return out;
 }
