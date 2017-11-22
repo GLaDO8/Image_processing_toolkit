@@ -1,8 +1,8 @@
-#include "color.h"
 #include <iostream>
+#include "color.h"
 
 Color::Color(){_r = _g = _b = 0;}
-Color::Color(float r, float g, float b): _r(r), _g(g), _b(b) {}
+Color::Color(int r, int g, int b): _r(r), _g(g), _b(b) {}
 Color::~Color(){}
 Color::Color(const Color& p) {
     _r = p._r;
@@ -10,14 +10,14 @@ Color::Color(const Color& p) {
     _b = p._b;
 }
 
-void Color::set_color(float r, float g, float b) {
+void Color::set_color(int r, int g, int b) {
     _r = r;
     _g = g;
     _b = b;
 }
-float Color::get_r() const{return _r;}
-float Color::get_g() const{return _g;}
-float Color::get_b() const{return _b;}
+int Color::get_r() const{return _r;}
+int Color::get_g() const{return _g;}
+int Color::get_b() const{return _b;}
 
 Color& Color::operator=(const Color &other) {
     _r = other._r;
@@ -28,7 +28,7 @@ Color& Color::operator=(const Color &other) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Color& c) {
-    os << static_cast<int>(c._r) << " " << static_cast<int>(c._g) << " " << static_cast<int>(c._b);
+    os << c._r << " " << c._g << " " << c._b;
     return os;
 }
 

@@ -1,6 +1,6 @@
+#include <iostream>
 #include "color.h"
 #include "pixel.h"
-#include <iostream>
 
 Pixel::Pixel() {}
 Pixel::~Pixel(){}
@@ -11,7 +11,7 @@ Pixel::Pixel(const Pixel& p) {
 }
 
 Color Pixel::get_color() const {return _c;}
-void Pixel::set_color(float r, float g, float b) {
+void Pixel::set_color(int r, int g, int b) {
     _c.set_color(r, g, b);
 }
 void Pixel::set_loc(int x, int y) {
@@ -19,9 +19,9 @@ void Pixel::set_loc(int x, int y) {
     _y = y;
 }
 void Pixel::apply_filter(const Color& c, float a) {
-    _c.set_color((1-a)*_c.get_r() + a*c.get_r(),
-                (1-a)*_c.get_g() + a*c.get_g(),
-                (1-a)*_c.get_b() + a*c.get_b());
+    _c.set_color(static_cast<int>( (1-a)*_c.get_r() + a*c.get_r() ),
+                static_cast<int>( (1-a)*_c.get_g() + a*c.get_g() ),
+                static_cast<int>( (1-a)*_c.get_b() + a*c.get_b() ) );
 }
 
 std::ostream& operator<<(std::ostream& os, const Pixel& p) {

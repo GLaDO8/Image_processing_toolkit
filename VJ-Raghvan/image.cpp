@@ -1,8 +1,8 @@
+#include <iostream>
+#include <algorithm>
 #include "color.h"
 #include "pixel.h"
 #include "image.h"
-#include <iostream>
-#include <algorithm>
 
 Image::Image(int w, int h):_w(w), _h(h) {
     set_arr();    
