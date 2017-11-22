@@ -3,19 +3,19 @@
 
 class Color {
 private:
-    float _r, _g, _b;
+    int _r, _g, _b;
 public:
     Color();
-    Color(float, float, float);
+    Color(int, int, int);
     virtual ~Color();
     Color(const Color&);
-    void set_color(float, float, float);
-    float get_r() const;
-    float get_g() const;
-    float get_b() const;
+    void set_color(int, int, int);
+    int get_r() const;
+    int get_g() const;
+    int get_b() const;
+    Color& operator=(const Color &other);
     friend std::ostream& operator<<(std::ostream& os, const Color& c);
     friend std::istream& operator>>(std::istream& is, Color& c);
-    Color& operator=(const Color &other);
 };
 
 #endif
