@@ -9,9 +9,13 @@ public:
     virtual ~Pixel();
     Pixel(const Pixel& p);
     Color get_color () const;
+    int get_brightness() const;
+
     void set_color(int r, int g, int b);
+    void set_color(const Color& c);
     void set_loc(int x, int y);
-    void apply_filter(const Color& c, float a);
+    // void apply_filter(const Color& c, float a);
+    
     friend std::ostream& operator<<(std::ostream& os, const Pixel& p);
     friend std::istream& operator>>(std::istream& is, Pixel& p);
 };

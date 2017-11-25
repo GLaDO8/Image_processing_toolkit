@@ -5,9 +5,16 @@
 #include "image.h"
 
 Image::Image(int w, int h):_w(w), _h(h) {
-    set_arr();    
+    set_arr();
+    max_pixel = 255;
+    _encoding = "P3";
 }
-Image::Image(){}
+Image::Image(){
+    _encoding = "P3";    
+}
+// Image::Image(const Image& i) {
+
+// }
 Image::~Image() {if(!_arr)delete _arr;}
 
 void Image::set_arr() {
@@ -20,13 +27,17 @@ void Image::set_arr() {
     }
 }
 
-void Image::filter(const Color& c, float a) {
-    for(int i = 0; i < _h; i++) {
-        for(int j = 0; j < _w; j++) {
-            _arr[i][j].apply_filter(c, a);
-        }
-    }
-}
+// void Image::filter(const Color& c, float a) {
+//     for(int i = 0; i < _h; i++) {
+//         for(int j = 0; j < _w; j++) {
+//             _arr[i][j].apply_filter(c, a);
+//         }
+//     }
+// }
+
+int Image::get_w() const {return _w;}
+int Image::get_h() const {return _h;}
+
 Color Image::color_at(int x, int y) const{
     return _arr[x][y].get_color();
 }

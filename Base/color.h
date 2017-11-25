@@ -14,6 +14,10 @@ public:
     int get_g() const;
     int get_b() const;
     Color& operator=(const Color &other);
+    Color& operator+(const Color& other);
+    Color& operator*(const float& a);
+
+    friend Color operator*(const float& a, const Color& c);
     friend std::ostream& operator<<(std::ostream& os, const Color& c);
     friend std::istream& operator>>(std::istream& is, Color& c);
 };

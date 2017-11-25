@@ -27,6 +27,31 @@ Color& Color::operator=(const Color &other) {
     return *this;
 }
 
+Color& Color::operator+(const Color &other) {
+    _r += other._r;
+    _g += other._g;
+    _b += other._b;
+
+    return *this;
+}
+
+Color& Color::operator*(const float& a) {
+    _r *= a;
+    _g *= a;
+    _b *= a;
+
+    return *this;
+}
+
+Color operator*(const float& a, const Color& c) {
+    Color res(c);
+    res._r *= a;
+    res._g *= a;
+    res._b *= a;
+
+    return res;
+}
+
 std::ostream& operator<<(std::ostream& os, const Color& c) {
     os << c._r << " " << c._g << " " << c._b;
     return os;

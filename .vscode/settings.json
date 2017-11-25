@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "iosfwd": "cpp",
+        "scoped_allocator": "cpp",
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "chrono": "cpp",
+        "limits": "cpp",
+        "valarray": "cpp"
+    }
+}
