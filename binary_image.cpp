@@ -1,6 +1,8 @@
 #include <iostream>
 #include <algorithm>
 #include <fstream>
+#include <vector>
+#include <cstring>
 
 #include "Base/color.h"
 #include "Base/pixel.h"
@@ -8,12 +10,12 @@
 
 #include "binary_image.h"
 
-binary_image::binary_image(Image i, int treshold): Image(i) {
-    _bin_arr = new int*[get_h()];
-    for(int i = 0; i < get_h(); i++) {
-        _bin_arr[i] = new int[get_w()];
+binary_image::binary_image(Image i): Image(i) {
+    _bin_arr = new int*[_h];
+    for(int i = 0; i < _h; i++) {
+        _bin_arr[i] = new int[_w];
     }    
-    binarize(treshold);
+    binarize(get_treshold());
 }
 
 void binary_image::binarize(int treshold) {
@@ -35,6 +37,34 @@ int** binary_image::get_bin_arr() const {
     return _bin_arr;
 }
 
+int binary_image::get_treshold() {
+    int* b_vals = new int[256];
+    for(int i = 0; i < 256; i++)    b_vals[i] = 0;
+
+    for(int i = 0; i < _h; i++) {
+        for(int j = 0; j < _w; j++) {
+            b_vals[_arr[i][j].get_brightness()]++;
+        }
+    }
+    std::vector<int> tresholds;
+    int net = 0;
+    for(int i = 1; i < 255; i++) {
+        if(b_vals[i-1] > b_vals[i] && b_vals[i] < b_vals[i+1]){  tresholds.push_back(i); net += i;}
+    }
+    return net/tresholds.size();
+
+    sort(tresholds.begin(), tresholds.end());
+
+    // std::cout << "treshold values are" << std::endl;    
+    // for(int i = 0; i < tresholds.size(); i++) {
+        // std::cout << tresholds[i] << " ";
+    // }
+    std::cout << std::endl;
+    delete b_vals;
+    if(tresholds.size() % 2 == 0)   return (tresholds[tresholds.size()/2] + tresholds[tresholds.size()/2 -1])/2;
+    else    return tresholds[tresholds.size()/2];
+    return 0;
+}
 // int binary_image::get_brightness(const Color& c) {
 //     return (c.get_r() + c.get_g() + c.get_b())/3;
 // }

@@ -22,10 +22,9 @@ int main(int argc, char** argv) {
 
     f_ptr >> i;
 
-    cc_image c(i, atoi(argv[2]));
-
+    cc_image b(i);
     std::ofstream o_ptr("cc_output.ppm");
-    o_ptr << c;
+    o_ptr << b;
 
 
     // float a = atof(argv[2]);

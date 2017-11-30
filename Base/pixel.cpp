@@ -12,7 +12,7 @@ Pixel::Pixel(const Pixel& p) {
 
 
 Color Pixel::get_color() const {return _c;}
-int Pixel::get_brightness() const {return (_c.get_r() + _c.get_g() + _c.get_b())/2;}
+int Pixel::get_brightness() const {return (_c.get_r() + _c.get_g() + _c.get_b())/3;}
 
 
 void Pixel::set_color(int r, int g, int b) {

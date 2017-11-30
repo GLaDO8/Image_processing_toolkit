@@ -3,15 +3,15 @@
 
 class cc_image : public binary_image{
 public:
-    cc_image(Image i, int treshold);
-    void print();
+    cc_image(Image i);
+    // void print();
     
 private:
-    enum labels{RED, GREEN, BLUE, ORANGE, YELLOW, PINK};
-    Color* colors;
+    int _ncc;
     void connectize();
     void _DFS_Util(int i, int j, int label, int**&);
     std::vector<std::pair<int, int> > _get_neighbors(int i, int j);
+    int get_ncc() const;
     friend std::ostream& operator<<(std::ostream& os, const cc_image& cc_i);
 };
 
