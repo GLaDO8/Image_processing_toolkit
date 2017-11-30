@@ -12,7 +12,7 @@ composite_image::composite_image(const Image& i1, const Image& i2, float a): Ima
                                                                     std::min(i1.get_h(), i2.get_h())) {
     for(int i = 0; i < _h; i++) {
         for(int j = 0; j < _w; j++) {
-            _arr[i][j].set_color((1-a)*i1.color_at(i, j) + a*i2.color_at(i, j));
+            _arr[i][j].set_color(i1.color_at(i, j).scalar_product(1-a) + i2.color_at(i, j).scalar_product(a));
         }
     }
 }

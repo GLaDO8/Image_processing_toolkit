@@ -17,28 +17,26 @@ cc_image::cc_image(Image i): binary_image(i) {
 }
 
 void cc_image::connectize() {
-    int** bin_arr = get_bin_arr();
     int label = 1;
 
     for(int i = 0; i < _h; i++) {
         for(int j = 0; j < _w; j++) {
-            if(bin_arr[i][j] == -1) {
-                _DFS_Util(i, j, label, bin_arr);
+            if(_bin_arr[i][j] == -1) {
+                _DFS_Util(i, j, label);
                 label += 1;
             }
         }
     }
     _ncc = label - 1;
-    std::cout << "out of connectize()" << std::endl;
 }
 
-void cc_image::_DFS_Util(int i, int j, int label, int**& bin_arr) {
-    bin_arr[i][j] = label;
+void cc_image::_DFS_Util(int i, int j, int label) {
+    _bin_arr[i][j] = label;
     std::vector<std::pair<int,int> > neighbors = _get_neighbors(i, j);
 
     for(auto & n : neighbors) {
-        if(bin_arr[n.first][n.second] == -1) {
-            _DFS_Util(n.first, n.second, label, bin_arr);
+        if(_bin_arr[n.first][n.second] == -1) {
+        _DFS_Util(n.first, n.second, label);
         }
     }
     neighbors.clear();
@@ -52,7 +50,8 @@ std::vector<std::pair<int, int> > cc_image::_get_neighbors(int i, int j) {
         if(i + m >= 0 && i + m < _h) {
             for(int n = -1; n < 2; n++) {
                 if(j + n >= 0 && j + n < _w) {
-                    neighbors.push_back(std::make_pair(i+m, j+n));
+                    if(m != 0 && n != 0)
+                        neighbors.push_back(std::make_pair(i+m, j+n));
                 }
             }
         }

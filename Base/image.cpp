@@ -27,6 +27,9 @@ void Image::set_arr() {
     }
 }
 
+void Image::set_pixel(int i, int j, int r, int g, int b) {
+    _arr[i][j].set_color(r, g, b);
+}
 // void Image::filter(const Color& c, float a) {
 //     for(int i = 0; i < _h; i++) {
 //         for(int j = 0; j < _w; j++) {

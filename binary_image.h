@@ -5,7 +5,7 @@ class binary_image: public Image {
 public:
     binary_image(Image i);
     int** get_bin_arr() const;
-private:
+protected:
     int** _bin_arr;
     void binarize(int treshold);
     int get_treshold();

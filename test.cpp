@@ -22,7 +22,10 @@ int main(int argc, char** argv) {
 
     f_ptr >> i;
 
-    cc_image b(i);
+    noise_image n(i.get_w(), i.get_h());
+    composite_image c(i, n, 0.5);
+
+    cc_image b(c);
     std::ofstream o_ptr("cc_output.ppm");
     o_ptr << b;
 

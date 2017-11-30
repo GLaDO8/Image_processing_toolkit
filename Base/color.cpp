@@ -19,6 +19,19 @@ int Color::get_r() const{return _r;}
 int Color::get_g() const{return _g;}
 int Color::get_b() const{return _b;}
 
+Color Color::scalar_product(float a) {
+    Color res;
+    res._r = a*_r;
+    res._g = a*_g;
+    res._b = a*_b;
+
+    return res;
+}
+
+bool Color::operator==(const Color& c) {
+    return (_r == c._r) && (_g == c._g) && (_b == c._b);
+}
+
 Color& Color::operator=(const Color &other) {
     _r = other._r;
     _g = other._g;
@@ -35,22 +48,22 @@ Color& Color::operator+(const Color &other) {
     return *this;
 }
 
-Color& Color::operator*(const float& a) {
-    _r *= a;
-    _g *= a;
-    _b *= a;
+// Color& Color::operator*(const float& a) {
+//     _r *= a;
+//     _g *= a;
+//     _b *= a;
 
-    return *this;
-}
+//     return *this;
+// }
 
-Color operator*(const float& a, const Color& c) {
-    Color res(c);
-    res._r *= a;
-    res._g *= a;
-    res._b *= a;
+// Color operator*(const float& a, const Color& c) {
+//     Color res(c);
+//     res._r *= a;
+//     res._g *= a;
+//     res._b *= a;
 
-    return res;
-}
+//     return res;
+// }
 
 std::ostream& operator<<(std::ostream& os, const Color& c) {
     os << c._r << " " << c._g << " " << c._b;
