@@ -38,48 +38,33 @@ int** binary_image::get_bin_arr() const {
 }
 
 int binary_image::get_treshold() {
-    int* b_vals = new int[256];
-    for(int i = 0; i < 256; i++)    b_vals[i] = 0;
+    int pixel_count[256]; // pixel count of each brightness value.
+    for(int i = 0; i < 256; i++)    pixel_count[i] = 0;
 
     for(int i = 0; i < _h; i++) {
         for(int j = 0; j < _w; j++) {
-            b_vals[_arr[i][j].get_brightness()]++;
+            pixel_count[_arr[i][j].get_brightness()]++;
+        }
+    }   
+    std::vector<int> tresholds;
+    for(int i = 1; i < 256; i++) {
+        if(pixel_count[i] < pixel_count[i-1] && pixel_count[i] < pixel_count[i+1]) {
+            tresholds.push_back(i);
         }
     }
-    std::vector<int> tresholds;
-    int net = 0;
-    for(int i = 1; i < 255; i++) {
-        if(b_vals[i-1] > b_vals[i] && b_vals[i] < b_vals[i+1]){  tresholds.push_back(i); net += i;}
+    std::sort(tresholds.begin(), tresholds.end());
+    if(tresholds.size() == 0) {
+        // for(int i = 0; i < 256; i++) {
+        //     std::cout << pixel_count[i] << " ";
+        // }
+        // std::cout << std::endl;
+        exit(1);
+        return 0;
     }
-    return net/tresholds.size();
-
-    sort(tresholds.begin(), tresholds.end());
-
-    // std::cout << "treshold values are" << std::endl;    
-    // for(int i = 0; i < tresholds.size(); i++) {
-        // std::cout << tresholds[i] << " ";
-    // }
-    std::cout << std::endl;
-    delete b_vals;
-    if(tresholds.size() % 2 == 0)   return (tresholds[tresholds.size()/2] + tresholds[tresholds.size()/2 -1])/2;
-    else    return tresholds[tresholds.size()/2];
-    return 0;
+    if(tresholds.size() % 2 == 1) {
+        return tresholds.at(tresholds.size()/2);
+    }
+    else {
+        return (tresholds.at(tresholds.size()/2 - 1) + tresholds.at(tresholds.size()/2))/2;
+    }
 }
-// int binary_image::get_brightness(const Color& c) {
-//     return (c.get_r() + c.get_g() + c.get_b())/3;
-// }
-
-// int main(int argc, char** argv) {
-//     std::string file_name(argv[1]);
-//     int treshold = atoi(argv[2]);
-//     std::ifstream f_ptr(file_name);
-
-//     Image i;
-//     f_ptr >> i;
-
-//     binary_image b(i, treshold);
-
-//     std::ofstream o_ptr("output.ppm");
-//     o_ptr << i;
-//     return  0;
-// }
