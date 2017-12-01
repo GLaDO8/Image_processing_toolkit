@@ -3,7 +3,7 @@
 ## Synopsis
 
 This Image processing toolkit is written in C++ and works on .ppm files. 
-.ppm files are portable pixmap format. It was created in the 80s for usage in E-mails. 
+.ppm files are portable pixmap format files. These were created in the 80s for usage in E-mails and on the internet. 
 The format of a .ppm file looks like this. 
 ```
 P3
