@@ -23,7 +23,7 @@ P3
 
 ## Toolkit functionalities
 
- * Brightness-based image segmentation.
+ * **Brightness-based image segmentation**
  
     Image segmentation is a partitioning process in which the image is broken down into different segments based on the parameter
     required. The parameter can be anything from brightness, specific color etc. Our toolkit does the image segmentation based on
@@ -32,17 +32,17 @@ P3
       The first 6 segments (relatively lower brightness) have the following colors. {red, green, blue, yellow, magenta, cyan} 
       the rest of the segments are coloured black.
       
-* Image-scaling+refection+composition
+* **Composition of scaled-reflected image and original image** 
 
     the image is scaled down to 0.5 by width and height and combined 4 times to give a new image. This new image is then clipped 
     by a scaled down stencil.
  
-* Noise image connected components
+* **Noise image connected components**
 
     The original image is combined with a noise image of the same and then the new image's brightness histogram is made to find out 
     the connected components which are labeled as {red, green, blue, yellow, magenta, cyan} and then the remaining as black. 
     
-* Gaussian filter on special reflected image
+* **Gaussian filter on special reflected image**
 
     pixel locations in the minima 8-neighborhood of the reflected image of the main file are marked.
     this image is modified to have the 24-neighborhood of the marked pixels as black and the rest as white. the guassian filter is applied
