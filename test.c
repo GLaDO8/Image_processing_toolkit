@@ -15,20 +15,19 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-    std::string img_file(argv[1]);
+    // std::string img_file(argv[1]);
     
-    Image i;
-    std::ifstream f_ptr(img_file);
+    // Image i;
+    // std::ifstream f_ptr(img_file);
 
-    f_ptr >> i;
+    // f_ptr >> i;
 
-    noise_image n(i.get_w(), i.get_h());
-    composite_image c(i, n, 0.5);
+    // noise_image n(i.get_w(), i.get_h());
+    // composite_image c(i, n, 0.5);
 
-    cc_image b(c);
-    std::ofstream o_ptr("cc_output.ppm");
-    o_ptr << b;
-
+    // cc_image b(i);
+    // std::ofstream o_ptr("cc_output.ppm");
+    // o_ptr << b;
 
     // float a = atof(argv[2]);
     // int treshold = atoi(argv[3]);

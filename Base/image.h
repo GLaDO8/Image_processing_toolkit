@@ -9,15 +9,17 @@ protected:
 public:
     Image(int w, int h);
     Image();
-    // Image(const Image& i);
+    Image(const Image& i);
     virtual ~Image();
     int get_w() const;
     int get_h() const;
-
+    Pixel** get_arr() const;
+    
     void set_pixel(int i, int j, int r, int g, int b);
     Color color_at(int i, int j) const;
-    // void filter(const Color& c, float a);
+    void filter(const Color& c, float a);
     void set_arr();
+    void set_arr2(Pixel**);
     friend std::ostream& operator<<(std::ostream& os, const Image& i);
     friend std::istream& operator>>(std::istream& in, Image& i);    
 };
