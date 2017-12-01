@@ -44,8 +44,8 @@ P3
     
 * **Gaussian filter on special reflected image (Contributed by Nikhil Pappu)**
 
-    pixel locations in the minima 8-neighborhood of the reflected image of the main file are marked.
-    this image is modified to have the 24-neighborhood of the marked pixels as black and the rest as white. the guassian filter is applied
+    Pixel locations in the minima 8-neighbourhood of the reflected image of the main file are marked.
+    this image is modified to have the 24-neighbourhood of the marked pixels as black and the rest as white. the gaussian filter is applied
     on the marked locations and the output image is created.
     
 ## Contributors
