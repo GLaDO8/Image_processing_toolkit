@@ -13,7 +13,6 @@
 
 #include "ScaledImage.h"
 #include "CombinedImage.h"
-#include "CompositeImage.h"
 #include "SquareClip.h"
 
 #include "noise_image.h"
@@ -72,9 +71,11 @@ void task2(string filename) {
     Image* i2 = new Image(image->get_w(),image->get_h());
     i1->set_arr2(C);
     i2->set_arr2(A);
-    CompositeImage *comp = new CompositeImage(i1,i2,0.75); 
-    image->set_arr2(comp->get_arr());
-    std::ofstream outFile("output_task2_imt2016035.ppm");
+    // CompositeImage *comp = new CompositeImage(i1,i2,0.75); 
+    // image->set_arr2(comp->get_arr());
+	composite_image* comp = new composite_image(*i1, *i2, 0.75);
+	image->set_arr2(comp->get_arr());
+	std::ofstream outFile("output_task2_imt2016035.ppm");
     outFile << *image;
     file.close();
     outFile.close();
@@ -180,8 +181,9 @@ void task8(string filename) {
 	Image i;
 	f_ptr >> i;
 
-	cc_image c(composite_image(i, noise_image(i.get_w(), i.get_h()), 0.5));
-
+	noise_image n(i.get_w(), i.get_h());
+	// cc_image c(CompositeImage(&i, &n, 0.5));
+	cc_image c(composite_image(i, n, 0.5));
 	ofstream o_ptr("output_task8_imt2016083.ppm");
 	o_ptr << c;
 

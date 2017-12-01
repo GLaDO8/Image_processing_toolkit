@@ -43,28 +43,26 @@ int binary_image::get_treshold() {
 
     for(int i = 0; i < _h; i++) {
         for(int j = 0; j < _w; j++) {
-            pixel_count[_arr[i][j].get_brightness()]++;
+            pixel_count[_arr[i][j].get_brightness()%256]++;
         }
     }   
     std::vector<int> tresholds;
-    for(int i = 1; i < 256; i++) {
+    for(int i = 1; i < 255; i++) {
         if(pixel_count[i] < pixel_count[i-1] && pixel_count[i] < pixel_count[i+1]) {
             tresholds.push_back(i);
         }
     }
-    std::sort(tresholds.begin(), tresholds.end());
     if(tresholds.size() == 0) {
-        // for(int i = 0; i < 256; i++) {
-        //     std::cout << pixel_count[i] << " ";
-        // }
-        // std::cout << std::endl;
+        std::cout << "No treshold found!" << std::endl;
         exit(1);
         return 0;
     }
     if(tresholds.size() % 2 == 1) {
+        std::sort(tresholds.begin(), tresholds.end());
         return tresholds.at(tresholds.size()/2);
     }
     else {
+        std::sort(tresholds.begin(), tresholds.end());
         return (tresholds.at(tresholds.size()/2 - 1) + tresholds.at(tresholds.size()/2))/2;
     }
 }
