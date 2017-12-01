@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 
-=======
 # Image_processing_toolkit
 
 ## Synopsis
@@ -69,4 +67,4 @@ $ ./toolkit name_of_file
   * Vijay Raghavan
   * Shreyas Gupta
   * Nikhil Pappu
->>>>>>> 6e6fcd9e5a9989d575f2a301a225ccf35b5632cd
+
