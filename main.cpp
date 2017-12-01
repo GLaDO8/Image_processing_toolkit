@@ -16,6 +16,8 @@
 #include "CompositeImage.h"
 #include "SquareClip.h"
 
+#include "noise_image.h"
+#include "composite_image.h"
 #include "binary_image.h"
 #include "cc_image.h"
 
@@ -46,6 +48,7 @@ int main(int argc, char const *argv[])
 			case 2: {task2(argv[1]); break;}
 			case 4: {task4(argv[1]); break;}
 			case 7: {task7(argv[1]); break;}
+			case 8: {task8(argv[1]); break;}
 			case 0: {flag = true; break;}
 			default : {cout << "Task not found!" << endl; break;}
 		}
@@ -172,6 +175,15 @@ void task4(string input) {
 	outfile << output << '\n';
 }
 
-void task8(ifstream filename) {
+void task8(string filename) {
+	ifstream f_ptr(filename);
+	Image i;
+	f_ptr >> i;
 
+	cc_image c(composite_image(i, noise_image(i.get_w(), i.get_h()), 0.5));
+
+	ofstream o_ptr("output_task8_imt2016083.ppm");
+	o_ptr << c;
+
+	f_ptr.close();
 }
